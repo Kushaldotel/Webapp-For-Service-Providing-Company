@@ -11,7 +11,7 @@ class Contact(models.Model):
         return f"'{self.Name}' messaged '{self.message}'"
 
 class Direct(models.Model):
-    number = models.CharField(max_length=20)
+    number = models.CharField(max_length=20, blank=False, null=False)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -1,11 +1,17 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Contact, Direct
 # Create your views here.
 def home(request):
     if request.method=="POST":
         number = request.POST.get('number')
-        data = Direct(number=number)
-        data.save()
+        if not number:
+            messages.add_message(request,messages.INFO, 'Fill the number field.')
+            return render(request,'try/index.html')
+            
+
+        data = Direct.objects.create(number=number)
+        # data.save()
         return redirect('home')
     return render(request,'try/index.html')
 

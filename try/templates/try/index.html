@@ -36,11 +36,18 @@
                         <h1 class="display-4 fw-bold mb-5">Way for Students that work&nbsp;<span
                                 class="underline">together</span>.</h1>
                         <p class="fs-5 text-muted mb-5">Providing a top notch education to students Since 1990</p>
-
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                         <form class="d-flex justify-content-center flex-wrap" method="post">
                             {% csrf_token %}
+
                             <div class="shadow-lg mb-3"><input class="form-control" type="integer" name="number"
-                                    placeholder="place you number here" required></div>
+                                    placeholder="place you number here"></div>
                             <div class="shadow-lg mb-3"><button class="btn btn-primary" type="submit">Connect me
                                 </button></div>
                         </form>
