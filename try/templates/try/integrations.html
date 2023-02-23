@@ -10,7 +10,11 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Raleway:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
 </head>
-
+<style>
+    button:hover {
+      background-color:#666;
+    }
+    </style>
 <body>
     <nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
         <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span>Brand</span></a><button
@@ -28,7 +32,34 @@
         </div>
     </nav>
     <section class="py-5 mt-5">
-        <div class="container py-4 py-xl-5">
+        <div style="text-align:center;">
+            
+            <h1 >Welcome to the Himalayan Bloggers</h1>
+
+            <div style="text-align:center;">
+                {% for blog in blogs reversed %}
+                  <div style="display:block; text-align:left; padding:20px; border:1px solid #ccc; margin:20px;">
+                    <a href="/blogpost/{{blog.slug}}">
+                        <h2>{{ blog.Title }}</h2>
+                    </a>
+                    <p>{{ blog.content |striptags| slice:100 }}</p>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                      <span>On {{ blog.time }}</span>
+                     <a href="/blogpost/{{blog.slug}}">
+                        <button style="padding:5px 10px; background-color:#ccc; color:black; border:none; cursor:pointer;
+                        transition: background-color 0.3s ease;
+                      "
+                      onmouseover="this.style.backgroundColor='green'"
+                      onmouseout="this.style.backgroundColor='#ccc'"
+                      >
+                        Read More
+                      </button>
+                     </a>
+                    </div>
+                  </div>
+                {% endfor %}
+                </div>
+        {% comment %} <div class="container py-4 py-xl-5"> 
             <div class="row gy-4 gy-md-0">
                 <div
                     class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
@@ -199,10 +230,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
     </section>
     <footer>
-        <div class="container py-4 py-lg-5">
+        {% comment %} <div class="container py-4 py-lg-5">
             <div class="row row-cols-2 row-cols-md-4">
                 <div class="col-12 col-md-3">
                     <div class="fw-bold d-flex align-items-center mb-2"><span>Brand</span></div>
@@ -257,10 +288,16 @@
                         </svg></li>
                 </ul>
             </div>
-        </div>
+        </div> {% endcomment %} 
+
+    
+                
+            
+            
+        
     </footer>
     <script src="{% static 'try/assets/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'try/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'try/assets/js/startup-modern.js' %}"></script>
 </body>
 
 </html>
